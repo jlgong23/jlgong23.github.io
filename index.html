@@ -11,16 +11,24 @@
 
 <script>
     var vlSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "data": {"url": "data/movies.json"},
-    "mark": "bar",
-    "encoding": {
-        "x": {"field": "IMDB Rating", "type": "quantitative", "bin": true},
-        "y": {"aggregate": "count", "type": "quantitative"},
-        "color": {"aggregate": "sum", "field": "Production Budget",
-            "scale": {"type": "log"}
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://uiuc-ischool-dataviz.github.io/spring2019online/week02/building_inventory.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {"type": "circle", "clip": true},
+  "encoding": {
+    "x": {
+      "field": "Year Constructed",
+      "type": "quantitative",
+      "scale": {"domain": [1750, 2040]}
+    },
+    "y": {
+      "field": "Year Acquired",
+      "type": "quantitative",
+      "scale": {"domain": [1750, 2040]}
     }
+  }
 };
     vegaEmbed('#viz', vlSpec);
 </script>
