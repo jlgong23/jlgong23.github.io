@@ -2,3 +2,26 @@
   
   
 <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+
+<script src="https://cdn.jsdelivr.net/npm/vega@5.16.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4.16.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+
+<div id="viz">
+</div>
+
+<script>
+    var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {"url": "data/movies.json"},
+    "mark": "bar",
+    "encoding": {
+        "x": {"field": "IMDB Rating", "type": "quantitative", "bin": true},
+        "y": {"aggregate": "count", "type": "quantitative"},
+        "color": {"aggregate": "sum", "field": "Production Budget",
+            "scale": {"type": "log"}
+        }
+    }
+}
+    vegaEmbed('#viz', vlSpec);
+</script>
